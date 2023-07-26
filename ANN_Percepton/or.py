@@ -43,7 +43,13 @@ if __name__ == "__main__"
     ETA = 0.3
     EPOCHS = 10
     main(data=OR, modelName = "or.model", plotname ="or2.png", eta = ETA, epochs=EPOCHS)
-
+    try:
+        logging.info(f">>>>> starting training for {gate}>>>>>")
+        main(data=OR, modelName="or.model", plotName="or.png", eta=ETA, epochs=EPOCHS)
+        logging.info(f"<<<<< done training for {gate} <<<<<\n\n")
+    except Exception as e:
+        logging.exception(e)
+        raise e
 
 
 
