@@ -3,9 +3,21 @@ import numpy as np
 import pandas as pd
 from utils.all_utils import prepare_data, save_plot
 from utils.model import Perceptron
+import logging
+
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+
+logging.basicConfig(filename=os.path.join(log_dir, "running_logs"),
+    level=logging.INFO, 
+    format='[%(asctime)s: %(levelname)s : %(module)s: %(message)s',
+    filemode='a'
+)
+
 
 def main(data, modelName, plotname, eta, epochs):
     df_OR = pd.DataFrame(OR)
+    logging.info(f"This is the raw dataset: {df}")
     
     X, y = prepare_data(df_OR)
 
